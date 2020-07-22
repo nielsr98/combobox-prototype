@@ -1,0 +1,9 @@
+Combobox!
+<div cdkCombobox class="example-combobox">
+    <span>Value</span>
+    <button cdkComboboxTrigger [triggerFor]="panel">Open Panel</button>
+</div>
+
+<ng-template cdkComboboxPanel #panel="cdkComboboxPanel">
+    <div>Hello</div>
+</ng-template>

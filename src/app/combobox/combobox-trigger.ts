@@ -115,7 +115,7 @@ export class CdkComboboxTrigger implements AfterContentInit {
     }
 
   private _getPortal() {
-      const hasPanelChanged = this._comboboxPanel._templateRef !== this._panel?.templateRef;
+      const hasPanelChanged = this._comboboxPanel._templateRef !== this._panel.templateRef;
       if (this._comboboxPanel && (!this._panel || hasPanelChanged)) {
           this._panel = new TemplatePortal(this._comboboxPanel._templateRef, this._viewContainerRef);
       }

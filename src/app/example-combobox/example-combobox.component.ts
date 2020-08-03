@@ -6,7 +6,6 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
-import {CdkComboboxToggleTrigger} from "../combobox/combobox-toggle-trigger.directive";
 import {CdkComboboxTextTrigger} from "../combobox/combobox-text-trigger";
 import {Subject} from "rxjs";
 

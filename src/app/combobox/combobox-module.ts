@@ -9,13 +9,11 @@
 import {NgModule} from '@angular/core';
 import {CdkComboboxPanel} from "./combobox-panel";
 import {CdkComboboxTextTrigger} from "./combobox-text-trigger";
-import {CdkComboboxToggleTrigger} from "./combobox-toggle-trigger.directive";
 import {OverlayModule} from "@angular/cdk/overlay";
 
 const EXPORTED_DECLARATIONS = [
     CdkComboboxPanel,
-    CdkComboboxTextTrigger,
-    CdkComboboxToggleTrigger
+    CdkComboboxTextTrigger
 ];
 
 @NgModule({

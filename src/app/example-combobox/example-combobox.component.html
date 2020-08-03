@@ -5,7 +5,7 @@ Toggle Combobox!
 </button>
 
 <ng-template cdkComboboxPanel #panel="cdkComboboxPanel">
-    <div panelContent #content="panelContent" [value]="input.value">
+    <div panelContent #content="panelContent" [parentPanel]="panel" [value]="input.value">
         <input #input>
         <button (click)="content.sendValue()">Apply</button>
     </div>
@@ -23,7 +23,7 @@ Text Combobox!
        [mode]="'onClick'">
 
 <ng-template cdkComboboxPanel #textPanel="cdkComboboxPanel">
-    <div panelContent #content="panelContent" [cdkComboboxPanel]="textPanel">
+    <div panelContent #content="panelContent" [parentPanel]="textPanel">
         <div class='option' *ngFor="let word of getWords(inputValue | async)" (click)="content.value = word">{{word}}</div>
         <button (click)="content.sendValue()">Choose</button>
     </div>

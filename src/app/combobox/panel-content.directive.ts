@@ -27,7 +27,7 @@ export class PanelContentDirective<V> implements OnInit {
   role = 'dialog';
   _value: V;
 
-  @Input('cdkComboboxPanel') private readonly _explicitPanel?: CdkComboboxPanel;
+  @Input('parentPanel') private readonly _explicitPanel: CdkComboboxPanel;
 
   constructor(
       private readonly _elementRef: ElementRef,

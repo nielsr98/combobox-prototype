@@ -1,0 +1,13 @@
+.example-combobox {
+    border: black 1px solid;
+    width: fit-content;
+    padding: 5px;
+}
+
+.example-combobox-panel {
+    margin-top: 5px;
+}
+
+.option {
+    cursor: pointer;
+}

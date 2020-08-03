@@ -1,25 +1,45 @@
-import {Directive, EventEmitter, Input, Output, TemplateRef} from "@angular/core";
+import {Directive, TemplateRef} from "@angular/core";
+import {Subject} from "rxjs";
 
 @Directive({
     selector: 'ng-template[cdkComboboxPanel]',
     exportAs: 'cdkComboboxPanel',
     host: {
+        'aria-controls': 'contentId',
+        'aria-haspopup': 'contentType'
     },
 })
-export class CdkComboboxPanel {
+export class CdkComboboxPanel<V = unknown> {
 
-    constructor(readonly _templateRef: TemplateRef<unknown>) {
+    valueUpdated: Subject<V> = new Subject<V>();
+    contentId: string = '';
+    contentType: string = '';
+
+    constructor(
+        readonly _templateRef: TemplateRef<unknown>,
+    ) {
     }
 
-    @Input()
-    get value(): any {
-        return this._value;
+    closePanel(data?: V) {
+        this.valueUpdated.next(data);
     }
-    set value(val: any) {
-        this._value = val;
-        this.valueChanged.emit(this._value);
-    }
-    private _value: any;
 
-    @Output('valueChanged') readonly valueChanged: EventEmitter<any> = new EventEmitter<any>();
+    _registerContent(contentId: string, contentType: string) {
+        this.contentId = contentId;
+        if (contentType !== 'listbox' && contentType !== 'dialog') {
+            throw Error('CdkComboboxPanel content must be either a listbox or dialog');
+        }
+        this.contentType = contentType;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+

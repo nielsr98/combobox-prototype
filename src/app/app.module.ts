@@ -7,17 +7,21 @@ import { ExampleComboboxComponent } from './example-combobox/example-combobox.co
 import { CdkComboboxModule } from "./combobox/combobox-module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {OverlayModule} from "@angular/cdk/overlay";
+import {FormsModule} from "@angular/forms";
+import { PanelContentDirective } from './combobox/panel-content.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExampleComboboxComponent
+    ExampleComboboxComponent,
+    PanelContentDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CdkComboboxModule
+    CdkComboboxModule,
+    FormsModule
   ],
   providers: [OverlayModule],
   bootstrap: [AppComponent]

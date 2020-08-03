@@ -26,7 +26,7 @@ import {Directionality} from "@angular/cdk/bidi";
         '(click)': 'toggle()'
     },
 })
-export class CdkComboboxTrigger implements AfterContentInit {
+export abstract class CdkComboboxTrigger implements AfterContentInit {
 
   @Input('triggerFor')
   get comboboxPanel(): CdkComboboxPanel | undefined {
@@ -52,9 +52,6 @@ export class CdkComboboxTrigger implements AfterContentInit {
   ) {}
 
   ngAfterContentInit() {
-      this._comboboxPanel.valueChanged.subscribe(value => {
-          this.panelValueChanged.emit(value);
-      });
   }
 
   toggle() {
@@ -87,7 +84,6 @@ export class CdkComboboxTrigger implements AfterContentInit {
       return this._overlayRef ? this._overlayRef.hasAttached() : false;
   }
 
-    /** Get the configuration object used to create the overlay */
     private _getOverlayConfig() {
         return new OverlayConfig({
             positionStrategy: this._getOverlayPositionStrategy(),
@@ -96,7 +92,6 @@ export class CdkComboboxTrigger implements AfterContentInit {
         });
     }
 
-    /** Build the position strategy for the overlay which specifies where to place the menu */
     private _getOverlayPositionStrategy(): FlexibleConnectedPositionStrategy {
         return this._overlay
             .position()
@@ -104,7 +99,6 @@ export class CdkComboboxTrigger implements AfterContentInit {
             .withPositions(this._getOverlayPositions());
     }
 
-    /** Determine and return where to position the opened menu relative to the menu item */
     private _getOverlayPositions(): ConnectedPosition[] {
         return [
             {originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top'},
@@ -115,7 +109,7 @@ export class CdkComboboxTrigger implements AfterContentInit {
     }
 
   private _getPortal() {
-      const hasPanelChanged = this._comboboxPanel._templateRef !== this._panel.templateRef;
+      const hasPanelChanged = this._comboboxPanel?._templateRef !== this._panel?.templateRef;
       if (this._comboboxPanel && (!this._panel || hasPanelChanged)) {
           this._panel = new TemplatePortal(this._comboboxPanel._templateRef, this._viewContainerRef);
       }

@@ -1,9 +1,30 @@
-Combobox!
-<div cdkCombobox class="example-combobox">
-    <span>Value</span>
-    <button cdkComboboxTrigger [triggerFor]="panel">Open Panel</button>
-</div>
+Toggle Combobox!
+<br>
+<button cdkCombobox #toggleCombobox class="example-combobox" [triggerFor]="panel" [mode]="'toggle'">
+    No Value
+</button>
 
 <ng-template cdkComboboxPanel #panel="cdkComboboxPanel">
-    <div>Hello</div>
+    <div panelContent #content="panelContent" [value]="input.value">
+        <input #input>
+        <button (click)="content.sendValue()">Apply</button>
+    </div>
+</ng-template>
+
+<br>
+<br>
+<br>
+
+Text Combobox!
+<br>
+<input #secondInput cdkCombobox #textCombobox="cdkComboboxTextTrigger"
+       (input)="inputValue.next(secondInput.value)"
+       [triggerFor]="textPanel"
+       [mode]="'onClick'">
+
+<ng-template cdkComboboxPanel #textPanel="cdkComboboxPanel">
+    <div panelContent #content="panelContent">
+        <div class='option' *ngFor="let word of getWords(inputValue | async)" (click)="content.value = word">{{word}}</div>
+        <button (click)="content.sendValue()">Choose</button>
+    </div>
 </ng-template>

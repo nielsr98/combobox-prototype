@@ -223,7 +223,10 @@ export class CdkComboboxTextTrigger<V> implements AfterContentInit {
     }
 
     private _getPortal() {
-        const hasPanelChanged = this._comboboxPanel?._templateRef !== this._panel?.templateRef;
+        const comboRef = this._comboboxPanel !== null ? this._comboboxPanel._templateRef : null;
+        const panelRef = this._panel !== undefined ? this._panel.templateRef : null;
+
+        const hasPanelChanged = comboRef !== panelRef;
         if (this._comboboxPanel && (!this._panel || hasPanelChanged)) {
             this._panel = new TemplatePortal(this._comboboxPanel._templateRef, this._viewContainerRef);
         }

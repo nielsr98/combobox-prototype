@@ -23,7 +23,7 @@ Text Combobox!
        [mode]="'onClick'">
 
 <ng-template cdkComboboxPanel #textPanel="cdkComboboxPanel">
-    <div panelContent #content="panelContent">
+    <div panelContent #content="panelContent" [cdkComboboxPanel]="textPanel">
         <div class='option' *ngFor="let word of getWords(inputValue | async)" (click)="content.value = word">{{word}}</div>
         <button (click)="content.sendValue()">Choose</button>
     </div>

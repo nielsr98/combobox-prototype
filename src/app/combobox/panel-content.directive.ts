@@ -39,10 +39,18 @@ export class PanelContentDirective<V> implements OnInit {
   }
 
   registerWithPanel(): void {
-    this._parentPanel._registerContent(this.dialogId, this.role);
+    if (this._parentPanel === null) {
+      this._explicitPanel._registerContent(this.dialogId, this.role);
+    } else {
+      this._parentPanel._registerContent(this.dialogId, this.role);
+    }
   }
 
   sendValue(): void {
-    this._parentPanel.closePanel(this.value);
+    if (this._parentPanel === null) {
+      this._explicitPanel.closePanel(this.value);
+    } else {
+      this._parentPanel.closePanel(this.value);
+    }
   }
 }
